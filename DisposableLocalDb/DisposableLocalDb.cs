@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Threading;
 
-namespace DisposableLocalDb
+namespace Disposable
 {
     public sealed class DisposableLocalDb : IDisposable
     {
@@ -15,13 +15,13 @@ namespace DisposableLocalDb
 
         public DisposableLocalDb(string database) 
         {
+            DeleteDb(database);
             _database = database;
             CreateDb();
         }
 
         private void CreateDb()
         {
-            DeleteDb();
             using var conn = new SqlConnection(LocalDbString);
             conn.Open();
             using var cmd = new SqlCommand($@"create database symbols on (name='{Database}', fileName='{Path.GetTempFileName()}.mdf');", conn);

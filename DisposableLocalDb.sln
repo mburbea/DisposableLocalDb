@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30128.36
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisposableLocalDb", "DisposableLocalDb\DisposableLocalDb.csproj", "{CFFCDBD1-D0E3-4800-B8E8-35E5A7453D63}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisposableLocalDb.Tests", "DisposableLocalDb.Tests\DisposableLocalDb.Tests.csproj", "{5D79A05C-191B-4417-A2A6-0D43C51832DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CFFCDBD1-D0E3-4800-B8E8-35E5A7453D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFFCDBD1-D0E3-4800-B8E8-35E5A7453D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFFCDBD1-D0E3-4800-B8E8-35E5A7453D63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D79A05C-191B-4417-A2A6-0D43C51832DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D79A05C-191B-4417-A2A6-0D43C51832DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D79A05C-191B-4417-A2A6-0D43C51832DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D79A05C-191B-4417-A2A6-0D43C51832DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
