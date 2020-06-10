@@ -24,7 +24,7 @@ namespace Disposable
         {
             using var conn = new SqlConnection(LocalDbString);
             conn.Open();
-            using var cmd = new SqlCommand($@"create database symbols on (name='{Database}', fileName='{Path.GetTempFileName()}.mdf');", conn);
+            using var cmd = new SqlCommand($@"create database {Database} on (name='{Database}', fileName='{Path.GetTempFileName()}.mdf');", conn);
             cmd.ExecuteNonQuery();
         }
 
