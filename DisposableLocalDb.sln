@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.36
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisposableLocalDb", "DisposableLocalDb\DisposableLocalDb.csproj", "{CFFCDBD1-D0E3-4800-B8E8-35E5A7453D63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFFCDBD1-D0E3-4800-B8E8-35E5A7453D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFFCDBD1-D0E3-4800-B8E8-35E5A7453D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFFCDBD1-D0E3-4800-B8E8-35E5A7453D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFFCDBD1-D0E3-4800-B8E8-35E5A7453D63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64824687-8216-4791-95AF-1DC2608949A3}
+	EndGlobalSection
+EndGlobal
