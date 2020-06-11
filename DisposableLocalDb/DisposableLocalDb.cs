@@ -7,37 +7,37 @@ namespace Disposable
 {
     public sealed class DisposableLocalDb : IDisposable
     {
-        private const string LocalDbString = @"Data Source=(localDb)\mssqllocaldb;Integrated Security=true;";
+        private const string LocalDbString = @"Data Source=(localDb)\mssqllocaldb;Initial Catalog = {0};Integrated Security=true;";
         private string _database;
-        
-        public string Database => _database ?? throw new ObjectDisposedException(nameof(DisposableLocalDb));
-        public string ConnectionString => Database is string db ? LocalDbString + $"Intial Catalog={db}" : throw new ObjectDisposedException(nameof(DisposableLocalDb));
 
-        public DisposableLocalDb(string database) 
+        public string Database => _database ?? throw new ObjectDisposedException(nameof(DisposableLocalDb));
+        public string ConnectionString => Database is string db ? string.Format(LocalDbString, Database) : throw new ObjectDisposedException(nameof(DisposableLocalDb));
+
+        public DisposableLocalDb(string database, string initSql = null)
         {
             DeleteDb(database);
             _database = database;
-            CreateDb();
+            CreateDb(initSql);
         }
 
-        private void CreateDb()
+        private void CreateDb(string initSql)
         {
-            using var conn = new SqlConnection(LocalDbString);
+            using var conn = new SqlConnection(string.Format(LocalDbString, "master"));
             conn.Open();
-            using var cmd = new SqlCommand($@"create database {Database} on (name='{Database}', fileName='{Path.GetTempFileName()}.mdf');", conn);
+            using var cmd = new SqlCommand($@"create database {Database} on (name='{Database}', fileName='{Path.GetTempFileName()}.mdf');{initSql}", conn);
             cmd.ExecuteNonQuery();
         }
 
         private void DeleteDb(string db = null)
         {
             db ??= Database;
-            using var conn = new SqlConnection(LocalDbString);
+            using var conn = new SqlConnection(string.Format(LocalDbString, "master"));
             conn.Open();
             using var cmd = new SqlCommand(@$"
 select top 1 physical_name from sys.master_files where db_id('{db}')=database_id;
 if db_id('{db}') is not null
 begin
-    alter database ${db} set single_user with rollback immediate
+    alter database {db} set single_user with rollback immediate
     exec sp_detach_db '{db}'
 end", conn);
 
@@ -58,10 +58,16 @@ end", conn);
             }
         }
 
+        ~DisposableLocalDb()
+        {
+            DeleteDb();
+        }
+
         public void Dispose()
         {
             if (Interlocked.Exchange(ref _database, null) is string db)
             {
+                GC.SuppressFinalize(this);
                 DeleteDb(db);
             }
         }
