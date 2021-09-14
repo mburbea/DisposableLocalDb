@@ -37,8 +37,13 @@ namespace Disposable
 select top 1 physical_name from sys.master_files where db_id('{db}')=database_id;
 if db_id('{db}') is not null
 begin
-    alter database {db} set single_user with rollback immediate
-    exec sp_detach_db '{db}'
+    begin try
+        alter database {db} set single_user with rollback immediate
+        exec sp_detach_db '{db}'
+    end try
+    begin catch
+        drop database if exists {db}
+    end catch
 end", conn);
 
             if (cmd.ExecuteScalar() is string path)
