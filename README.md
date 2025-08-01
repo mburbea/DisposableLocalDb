@@ -1,3 +1,5 @@
+Note: I'm archiving this project as I am no longer willing to maintain this project. 
+
 # DisposableLocalDb
 This simple library will attach a single file local database instance to your localdb and on dispose detach and delete the relevant data.
 
